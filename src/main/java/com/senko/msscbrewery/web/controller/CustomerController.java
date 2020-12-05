@@ -1,6 +1,5 @@
 package com.senko.msscbrewery.web.controller;
 
-import com.senko.msscbrewery.services.BeerService;
 import com.senko.msscbrewery.services.CustomerService;
 import com.senko.msscbrewery.web.model.BeerDto;
 import com.senko.msscbrewery.web.model.CustomerDto;
@@ -14,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@RequestMapping("api/v1/beer")
+@RequestMapping("api/v1/customer")
 @RestController
-public class BeerController {
+public class CustomerController {
 
-    private final BeerService beerService;
+    private CustomerService customerService;
 
     @Autowired
-    public BeerController(BeerService beerService) {
-        this.beerService = beerService;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @GetMapping("/{beerId}")
-    public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {
-        return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
+    @GetMapping("/{customerId}")
+    public ResponseEntity<CustomerDto> getBeer(@PathVariable("beerId") UUID beerId) {
+        return new ResponseEntity<>(customerService.getCustomerById(beerId), HttpStatus.OK);
     }
 }
